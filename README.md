@@ -1,20 +1,22 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This was a quick and dirty project I whipped up to parse the log files extracted from devops using powershell. 
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+PowerShell
+``` PowerShell
+# run these one at a time
+az extension add --name azure-devops
+az login
+ 
+# Then you can do fun stuff like this
+az repos pr list --organization  https://dev.azure.com/{your org} --project {your project} --repository {your repo name} --status all | Set-Content -Path "{local path to output to}.json"
+```
+[Learn about Azure DevOps command line interface extension - Azure DevOps | Microsoft Learn](https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops)
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Once you have those files saved locally, you'll need to parse them.
+Clone and build this repo.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+Publish it locally then using your command line, {path}>DavesJsonParser.exe "{json file, full path}"
+ex. I:\temp>DavesJsonParser.exe "C:/1/temp/{local path}.json"
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+This will output the results to the screen
